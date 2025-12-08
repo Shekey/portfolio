@@ -69,11 +69,10 @@ export const SectionShell = forwardRef<HTMLDivElement, SectionProps>(
           className
         )}
       >
-        {/* Layout Fix: Center on mobile, left on desktop */}
         <div className="max-w-7xl mx-auto w-full relative flex flex-col items-center md:items-start">
           <SectionHeader label={label || "// SECTION"} manual={manualHeader} />
 
-          <div className="section-content w-full">{children}</div>
+          <div className="section-content w-full pt-16">{children}</div>
         </div>
       </section>
     );

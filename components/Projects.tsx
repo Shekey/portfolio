@@ -15,9 +15,9 @@ export const Projects = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
   const { projects } = portfolioData;
 
-  const col1 = [projects[0], projects[3], projects[6]].filter(Boolean);
-  const col2 = [projects[1], projects[4], projects[7]].filter(Boolean);
-  const col3 = [projects[2], projects[5]].filter(Boolean);
+  const col1 = projects.filter((_, i) => i % 3 === 0);
+  const col2 = projects.filter((_, i) => i % 3 === 1);
+  const col3 = projects.filter((_, i) => i % 3 === 2);
 
   useGSAP(
     () => {
@@ -76,7 +76,7 @@ export const Projects = () => {
       label={portfolioData.ui.labels.projects}
       className="overflow-hidden"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-24 md:pt-32">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Column 1 */}
         <div className="flex flex-col gap-8">
           {col1.map((p) => (
@@ -109,6 +109,7 @@ function ProjectCard({ project }: { project: any }) {
   return (
     <a
       href={project.link}
+      target="_blank"
       className={`project-card ${initialClass} group relative block w-full h-full`}
     >
       <div className="relative overflow-hidden rounded-xl bg-gray-100 border border-[var(--border)]">

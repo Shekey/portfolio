@@ -83,10 +83,9 @@ export const Hero = () => {
     <SectionShell
       ref={containerRef}
       label={portfolioData.ui.labels.hero}
-      className="h-screen py-0 items-center md:items-start" // Ensure center on mobile
+      className="h-screen items-center md:items-start" // Ensure center on mobile
       manualHeader={true}
     >
-      {/* ... (Rest of JSX remains exactly the same as previous turn) ... */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center h-full w-full">
         {/* Left: Text */}
         <div className="text-center md:text-left">
@@ -101,7 +100,7 @@ export const Hero = () => {
         </div>
 
         {/* Right: Visual */}
-        <div className="relative h-[400px] flex items-center justify-center md:justify-end">
+        <div className="relative flex items-center justify-center md:justify-end">
           {/* Code Snippet */}
           <div className="architect-code opacity-0 hidden w-full max-w-md bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 shadow-sm font-mono text-xs md:text-sm leading-relaxed overflow-hidden text-left">
             <div className="flex gap-2 mb-4 border-b border-[var(--border)] pb-2">

@@ -51,7 +51,7 @@ export const Statement = () => {
       <div className="sticky top-0 h-screen flex flex-col justify-center px-6 md:px-12">
         {/* HEADER ALIGNMENT FIX */}
         {/* We use max-w-7xl mx-auto to match SectionShell's grid exactly */}
-        <div className="w-full max-w-7xl mx-auto mb-12 md:mb-20 flex justify-center md:justify-start">
+        <div className="w-full max-w-7xl mx-auto mb-16 flex justify-center md:justify-start">
           <SectionHeader label={portfolioData.ui.labels.statement} />
         </div>
 

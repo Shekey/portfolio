@@ -67,7 +67,7 @@ export const SectionHeader = ({
     <div
       ref={ref}
       className={cn(
-        "flex items-center w-full justify-start gap-3 mb-8 opacity-100",
+        "flex items-center w-full justify-start gap-3 opacity-100",
         className
       )}
     >
