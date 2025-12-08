@@ -3,32 +3,38 @@ import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useViewMode } from "@/store/useViewMode";
-import { portfolioData } from "@/data/resume-data"; // Import data
+import { portfolioData } from "@/data/resume-data";
 
 export const Preloader = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { isLoading, setLoaded } = useViewMode();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const [message, setMessage] = useState("");
 
-  // State for the random message
-  const [message, setMessage] = useState("Loading...");
-
-  // Select random message on mount
+  // 1. Pick Message
   useEffect(() => {
-    const messages = portfolioData.ui.loaderMessages;
+    const messages = portfolioData?.ui?.loaderMessages || [
+      "SYSTEM INITIALIZING...",
+    ];
     const randomMsg = messages[Math.floor(Math.random() * messages.length)];
     setMessage(randomMsg);
   }, []);
 
+  // 2. Window Load Logic
   useLayoutEffect(() => {
     document.body.style.overflow = "hidden";
-    const handleLoad = () =>
-      document.fonts.ready.then(() => setIsPageLoaded(true));
 
-    if (document.readyState === "complete") handleLoad();
-    else {
+    const handleLoad = () => {
+      document.fonts.ready.then(() => {
+        setIsPageLoaded(true);
+      });
+    };
+
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
       window.addEventListener("load", handleLoad);
-      const timeout = setTimeout(handleLoad, 5000);
+      const timeout = setTimeout(handleLoad, 4000);
       return () => {
         window.removeEventListener("load", handleLoad);
         clearTimeout(timeout);
@@ -38,9 +44,11 @@ export const Preloader = () => {
 
   useGSAP(
     () => {
+      if (!message) return;
+
       const tl = gsap.timeline();
 
-      // 1. Boot Animation
+      // Step A: Entrance (Draw logo + Fade in text)
       tl.to(".svg-path", {
         strokeDashoffset: 0,
         duration: 1.5,
@@ -50,16 +58,13 @@ export const Preloader = () => {
         {
           opacity: 1,
           duration: 0.5,
-          repeat: -1,
-          yoyo: true,
           ease: "sine.inOut",
         },
-        "<"
+        "-=0.8"
       );
 
-      // 2. Exit Animation
+      // Step B: Exit (Only after page is ready)
       if (isPageLoaded) {
-        gsap.killTweensOf(".boot-text");
         const exitTl = gsap.timeline({
           onComplete: () => {
             document.body.style.overflow = "";
@@ -67,17 +72,32 @@ export const Preloader = () => {
           },
         });
 
+        // --- CHANGE IS HERE ---
+        // Increased hold time from 0.6 to 1.6 seconds
         exitTl
-          .to(".svg-path", { strokeDashoffset: 0, duration: 0.5 })
-          .to(".loader-content", { opacity: 0, y: -20, duration: 0.5 })
-          .to(".loader-curtain", {
-            yPercent: -100,
-            duration: 0.8,
-            ease: "power4.inOut",
-          });
+          .to({}, { duration: 1.6 })
+
+          // Fade out content
+          .to(".loader-content", {
+            opacity: 0,
+            y: -20,
+            duration: 0.5,
+            ease: "power2.in",
+          })
+
+          // Lift Curtain
+          .to(
+            ".loader-curtain",
+            {
+              yPercent: -100,
+              duration: 0.8,
+              ease: "power4.inOut",
+            },
+            "-=0.1"
+          );
       }
     },
-    { scope: containerRef, dependencies: [isPageLoaded] }
+    { scope: containerRef, dependencies: [isPageLoaded, message] }
   );
 
   if (!isLoading) return null;
@@ -87,16 +107,19 @@ export const Preloader = () => {
       ref={containerRef}
       className="fixed inset-0 z-[9999] flex items-center justify-center"
     >
+      {/* Curtain */}
       <div className="loader-curtain absolute inset-0 bg-[#050505] w-full h-full" />
+
+      {/* Content */}
       <div className="loader-content relative z-10 flex flex-col items-center justify-center">
+        {/* Logo */}
         <svg
           width="120"
           height="120"
           viewBox="0 0 100 100"
           fill="none"
-          className="mb-6"
+          className="mb-8"
         >
-          {/* ... Same SVG paths as before ... */}
           <path
             className="svg-path stroke-white stroke-[0.5]"
             d="M50 5 L90 25 L90 75 L50 95 L10 75 L10 25 Z"
@@ -113,8 +136,8 @@ export const Preloader = () => {
           />
         </svg>
 
-        {/* Dynamic Funny Text */}
-        <div className="boot-text opacity-0 font-mono text-xs text-white tracking-[0.2em] uppercase text-center">
+        {/* Text Area */}
+        <div className="boot-text opacity-0 font-mono text-xs text-white/90 tracking-[0.2em] uppercase text-center min-h-[20px] font-medium">
           {message}
         </div>
       </div>
