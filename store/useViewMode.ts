@@ -1,17 +1,26 @@
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
-type ViewModeStore = {
+interface ViewState {
   isCreative: boolean;
   isLoading: boolean;
   toggleMode: () => void;
-  setCreative: (value: boolean) => void; // Safer than toggle for initialization
   setLoaded: () => void;
-};
+}
 
-export const useViewMode = create<ViewModeStore>((set) => ({
-  isCreative: false, // Default to Architect (clean)
-  isLoading: true, // Default to Loading
-  toggleMode: () => set((state) => ({ isCreative: !state.isCreative })),
-  setCreative: (value) => set({ isCreative: value }),
-  setLoaded: () => set({ isLoading: false }),
-}));
+export const useViewMode = create<ViewState>()(
+  persist(
+    (set) => ({
+      isCreative: false, // Default state
+      isLoading: true, // Default state (Preloader is active)
+
+      toggleMode: () => set((state) => ({ isCreative: !state.isCreative })),
+      setLoaded: () => set({ isLoading: false }),
+    }),
+    {
+      name: "ajdin-sahinbegovic-resume-view-mode",
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({ isCreative: state.isCreative }),
+    }
+  )
+);
