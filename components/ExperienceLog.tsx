@@ -32,13 +32,8 @@ export const ExperienceLog = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: item,
-            start: "top 85%", // Enter
-            end: "bottom 30%", // This end point is mostly ignored now for exit
-            // FIX: "play none none reverse"
-            // Scroll Down: Play (Fade In)
-            // Scroll Past: None (Stay Visible)
-            // Scroll Up: None (Stay Visible)
-            // Scroll Up Past Top: Reverse (Fade Out)
+            start: "top 85%",
+            end: "bottom 30%",
             toggleActions: "play none none reverse",
           },
         });
@@ -48,11 +43,24 @@ export const ExperienceLog = () => {
   );
 
   return (
-    <SectionShell ref={containerRef} label="// EXECUTION_HISTORY">
+    <SectionShell ref={containerRef} label={portfolioData.ui.labels.experience}>
       <div className="border-l border-[var(--border)] ml-3 md:ml-4 space-y-16 pl-8 md:pl-16 relative">
         {portfolioData.jobs.map((job, index) => (
           <div key={index} className="job-item opacity-0 relative group">
-            <span className="absolute -left-[41px] md:-left-[73px] top-2 w-[9px] h-[9px] bg-[var(--bg)] border border-[var(--accent)] rounded-full z-10 group-hover:bg-[var(--accent)] transition-colors duration-300" />
+            {/* TIMELINE DOT ALIGNMENT FIX:
+              - Mobile: padding-left is 8 (32px). Circle width is 9px. Center is -32 - 4.5 = -36.5px
+              - Desktop: padding-left is 16 (64px). Center is -64 - 4.5 = -68.5px
+            */}
+            <span
+              className="absolute top-[5px] w-[9px] h-[9px] bg-[var(--bg)] border border-[var(--accent)] rounded-full z-10 group-hover:bg-[var(--accent)] transition-colors duration-300"
+              style={{
+                left: "calc(-2rem - 4.5px)", // Mobile default (pl-8 = 2rem)
+                // We use a media query style override or Tailwind utility for desktop
+              }}
+            />
+            {/* We apply the desktop override using Tailwind specific class since calc in style tag doesn't support 'md:' */}
+            <span className="hidden md:block absolute top-[5px] w-[9px] h-[9px] bg-[var(--bg)] border border-[var(--accent)] rounded-full z-10 group-hover:bg-[var(--accent)] transition-colors duration-300 -left-[calc(4rem+4.5px)]" />
+            <span className="md:hidden absolute top-[5px] w-[9px] h-[9px] bg-[var(--bg)] border border-[var(--accent)] rounded-full z-10 group-hover:bg-[var(--accent)] transition-colors duration-300 -left-[calc(2rem+4.5px)]" />
 
             <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-4">
               <h4 className="text-xl md:text-2xl font-bold text-[var(--text-main)] tracking-tight">

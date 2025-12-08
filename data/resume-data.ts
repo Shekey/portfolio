@@ -134,4 +134,23 @@ export const portfolioData = {
       ],
     },
   ],
+  ui: {
+    loaderMessages: [
+      "Loading artifacts...",
+      "Compiling awesomeness...",
+      "Hydrating the DOM...",
+      "Aligning flexboxes...",
+      "Reticulating splines...",
+      "Resolving promises...",
+      "Coffee.brew()...",
+      "Generating pixels...",
+    ],
+    labels: {
+      hero: "// IDENTITY_INIT",
+      statement: "// CORE_PHILOSOPHY",
+      projects: "// BUILT_ARTIFACTS",
+      specs: "// TECHNICAL_DNA",
+      experience: "// VERSION_HISTORY",
+    },
+  },
 };

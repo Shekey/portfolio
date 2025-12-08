@@ -51,7 +51,7 @@ export const TechSpecs = () => {
   return (
     <SectionShell
       ref={containerRef}
-      label="// SYSTEM_ARCHITECTURE"
+      label={portfolioData.ui.labels.specs}
       className="bg-[var(--surface)]"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">

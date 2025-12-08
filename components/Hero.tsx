@@ -82,7 +82,7 @@ export const Hero = () => {
   return (
     <SectionShell
       ref={containerRef}
-      label="// SYSTEM_ENTRY"
+      label={portfolioData.ui.labels.hero}
       className="h-screen py-0 items-center md:items-start" // Ensure center on mobile
       manualHeader={true}
     >
