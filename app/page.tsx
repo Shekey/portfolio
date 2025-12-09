@@ -1,12 +1,7 @@
 "use client";
 import dynamic from "next/dynamic"; // 1. Import dynamic
 import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { Statement } from "@/components/Statement";
-import { ProjectSpotlight } from "@/components/ProjectSpotlight";
-import { Projects } from "@/components/Projects";
-import { TechSpecs } from "@/components/TechSpecs";
-import { ExperienceLog } from "@/components/ExperienceLog";
+
 import { Footer } from "@/components/Footer";
 import { Preloader } from "@/components/Preloader";
 import { useViewMode } from "@/store/useViewMode";
@@ -15,7 +10,57 @@ import { useViewMode } from "@/store/useViewMode";
 const CreativeManager = dynamic(
   () =>
     import("@/components/CreativeManager").then((mod) => mod.CreativeManager),
-  { ssr: false } // No server rendering for this chaos engine
+  { ssr: true } // No server rendering for this chaos engine
+);
+
+const SkatePark = dynamic(
+  () => import("@/components/creative-world/SkateParkScene"),
+  {
+    ssr: false,
+  }
+);
+
+const Statement = dynamic(
+  () => import("@/components/Statement").then((mod) => mod.Statement),
+  {
+    ssr: true,
+  }
+);
+
+const Hero = dynamic(
+  () => import("@/components/Hero").then((mod) => mod.Hero),
+  {
+    ssr: true,
+  }
+);
+
+const ProjectSpotlight = dynamic(
+  () =>
+    import("@/components/ProjectSpotlight").then((mod) => mod.ProjectSpotlight),
+  {
+    ssr: true,
+  }
+);
+
+const Projects = dynamic(
+  () => import("@/components/Projects").then((mod) => mod.Projects),
+  {
+    ssr: true,
+  }
+);
+
+const TechSpecs = dynamic(
+  () => import("@/components/TechSpecs").then((mod) => mod.TechSpecs),
+  {
+    ssr: true,
+  }
+);
+
+const ExperienceLog = dynamic(
+  () => import("@/components/ExperienceLog").then((mod) => mod.ExperienceLog),
+  {
+    ssr: true,
+  }
 );
 
 export default function Home() {
@@ -27,37 +72,37 @@ export default function Home() {
         isCreative ? "bg-black" : "bg-[var(--bg)]"
       }`}
     >
-      {/* 3. Conditionally Render */}
-      {/* React will mount this component (and download the bundle) ONLY when isCreative becomes true. */}
-      {/* When becomes false, it unmounts, triggering the cleanup return function in useGSAP. */}
-      {isCreative && <CreativeManager />}
-
       <Preloader />
       <Header />
+      {isCreative && (
+        <>
+          {/* <CreativeManager /> */}
+          <SkatePark />
+        </>
+      )}
 
-      <div className="section-shell">
-        <Hero />
-      </div>
-
-      <div className="section-shell">
-        <Statement />
-      </div>
-
-      <div className="section-shell">
-        <ProjectSpotlight />
-      </div>
-
-      <div className="section-shell">
-        <Projects />
-      </div>
-
-      <div className="section-shell">
-        <TechSpecs />
-      </div>
-
-      <div className="section-shell">
-        <ExperienceLog />
-      </div>
+      {!isCreative && (
+        <>
+          <div className="section-shell">
+            <Hero />
+          </div>
+          <div className="section-shell">
+            <Statement />
+          </div>
+          <div className="section-shell">
+            <ProjectSpotlight />
+          </div>
+          <div className="section-shell">
+            <Projects />
+          </div>
+          <div className="section-shell">
+            <TechSpecs />
+          </div>
+          <div className="section-shell">
+            <ExperienceLog />
+          </div>
+        </>
+      )}
 
       <div className="section-shell">
         <Footer />
