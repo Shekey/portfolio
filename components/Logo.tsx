@@ -6,6 +6,8 @@ import { useViewMode } from "@/store/useViewMode";
 import { cn } from "@/lib/utils";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
+gsap.registerPlugin(useGSAP);
+
 interface LogoProps {
   className?: string;
   size?: "sm" | "md" | "lg";
@@ -37,19 +39,18 @@ export const Logo = ({ className, size = "md" }: LogoProps) => {
       const main = container.querySelector(".logo-main");
       const layer1 = container.querySelector(".logo-layer-1"); // Rose
       const layer2 = container.querySelector(".logo-layer-2"); // Indigo
+      const idleTl = gsap.timeline({ repeat: -1, repeatDelay: 3 });
 
       // 1. Creative Mode: Idle "Breathing" Glitch (Subtle)
       if (isCreative) {
-        const idleTl = gsap.timeline({ repeat: -1, repeatDelay: 3 });
-
         idleTl
           .to([layer1, layer2], {
-            x: "random(-1, 1)", // Reduced distance for less visual noise
-            y: "random(-0.5, 0.5)",
-            opacity: 0.6,
-            duration: 0.1,
+            x: "random(-3, -3)", // Reduced distance for less visual noise
+            y: "random(-2, 2)",
+            opacity: 0.8,
+            duration: 0.08,
             yoyo: true,
-            repeat: 1, // Fewer repeats
+            repeat: 4, // Fewer repeats
             ease: "steps(1)",
           })
           .to([layer1, layer2], {
@@ -59,6 +60,7 @@ export const Logo = ({ className, size = "md" }: LogoProps) => {
             duration: 0.1,
           });
       } else {
+        idleTl.clear();
         gsap.set([layer1, layer2], { x: 0, y: 0, opacity: 0 });
       }
 
@@ -109,7 +111,7 @@ export const Logo = ({ className, size = "md" }: LogoProps) => {
         container.removeEventListener("mouseleave", onLeave);
       };
     },
-    { scope: containerRef, dependencies: [isCreative, prefersReducedMotion] }
+    { dependencies: [isCreative, prefersReducedMotion], revertOnUpdate: true }
   );
 
   return (

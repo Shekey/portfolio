@@ -1,4 +1,5 @@
 import { MapPin, Plane, Home } from "lucide-react";
+import Image from "next/image";
 
 export function LifeJourney() {
   return (
@@ -27,10 +28,10 @@ export function LifeJourney() {
         {/* Journey Timeline */}
         <div className="relative">
           {/* Connection line - hidden on mobile */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 via-blue-500 to-purple-500 -translate-x-1/2 journey-line" />
+          {/* <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-green-500 via-blue-500 to-purple-500 -translate-x-1/2 journey-line" /> */}
 
           {/* Bosnia */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16 md:mb-32">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-6 mb-16 md:mb-32">
             <div className="md:text-right flex flex-col md:items-end journey-bosnia order-2 md:order-1">
               <div className="max-w-md">
                 <div className="inline-flex items-center gap-2 mb-4 text-green-400">
@@ -57,10 +58,12 @@ export function LifeJourney() {
             </div>
             <div className="journey-bosnia-img order-1 md:order-2">
               <div className="relative rounded-3xl overflow-hidden h-[400px] md:h-[500px] border-2 border-green-500/30">
-                <img
-                  src="https://images.unsplash.com/photo-1629665989308-2c4a3e636f13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqYWpjZSUyMHdhdGVyZmFsbCUyMGJvc25pYXxlbnwxfHx8fDE3NjUzNjg0NzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                <Image
+                  src="https://images.unsplash.com/photo-1734141077666-ee12d17b6b8f?q=80&w=1857&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Bosnia landscape"
                   className="w-full h-full object-cover"
+                  width={400}
+                  height={400}
                 />
               </div>
             </div>
@@ -81,13 +84,15 @@ export function LifeJourney() {
           </div>
 
           {/* Berlin */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-8 md:mt-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-6 mt-8 md:mt-0">
             <div className="journey-berlin-img">
               <div className="relative rounded-3xl overflow-hidden h-[400px] md:h-[500px] border-2 border-purple-500/30">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1612540142740-c45f53c2554b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZXJsaW4lMjBjaXR5c2NhcGV8ZW58MXx8fHwxNzY1MjY0OTk3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                   alt="Berlin cityscape"
                   className="w-full h-full object-cover"
+                  width={400}
+                  height={400}
                 />
               </div>
             </div>

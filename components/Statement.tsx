@@ -7,7 +7,7 @@ import { portfolioData } from "@/data/resume-data";
 import { SectionHeader } from "./SectionHeader";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const Statement = () => {
   const containerRef = useRef<HTMLDivElement>(null);

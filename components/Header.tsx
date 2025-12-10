@@ -4,8 +4,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import {
   ArrowDownTrayIcon,
-  SunIcon,
-  MoonIcon,
   CubeTransparentIcon,
   SparklesIcon,
 } from "@heroicons/react/24/outline";
@@ -15,6 +13,8 @@ import { Logo } from "@/components/Logo";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/lib/utils";
 
+gsap.registerPlugin(useGSAP);
+
 export const Header = () => {
   const headerRef = useRef<HTMLHeadElement>(null);
   const { isCreative, toggleMode } = useViewMode();
@@ -23,49 +23,52 @@ export const Header = () => {
   useGSAP(
     () => {
       const el = headerRef.current;
-      if (!el) return;
+      const triggerModeButton =
+        headerRef.current?.querySelector(".mode-trigger");
+
+      const borderColor = isCreative ? "#c27aff" : "#000";
+      const color = isCreative ? "#000" : "#000";
+      const background = isCreative ? "#000" : "#fff";
+
+      if (!el || !triggerModeButton) return;
       if (prefersReducedMotion) return;
 
-      // 1. Determine Target Colors based on Mode
-      const scrolledBg = isCreative
-        ? "rgba(5, 5, 5, 0.85)"
-        : "rgba(255, 255, 255, 0.85)";
-      const scrolledBorder = isCreative
-        ? "rgba(255, 255, 255, 0.1)"
-        : "rgba(24, 24, 27, 0.06)";
+      const tl = gsap.timeline();
 
       // 2. Animate Appearance on Scroll
-      gsap.to(el, {
+      tl.to(el, {
         scrollTrigger: {
           trigger: "body",
           start: "top -20px", // Trigger slightly after scrolling starts
           end: "top -21px",
           toggleActions: "play none none reverse", // Play when scrolling down, Reverse when at top
         },
-        backgroundColor: scrolledBg,
-        borderBottomColor: scrolledBorder,
         backdropFilter: "blur(16px)", // Heavy blur for readability
         duration: 0.3,
         ease: "power2.out",
-      });
-
-      // 3. Handle Mode Switch while already scrolled
-      // If user toggles mode halfway down the page, we need to update the background immediately
-      if (window.scrollY > 20) {
-        gsap.to(el, {
-          backgroundColor: scrolledBg,
-          borderBottomColor: scrolledBorder,
-          duration: 0.5,
-        });
-      }
+      }).to(
+        triggerModeButton,
+        {
+          borderColor,
+          color,
+          background,
+        },
+        "<"
+      );
     },
-    { scope: headerRef, dependencies: [isCreative, prefersReducedMotion] }
+    { dependencies: [isCreative, prefersReducedMotion] }
   );
 
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 w-full h-20 px-6 md:px-12 border-b border-transparent transition-colors duration-300"
+      className={cn(
+        "sticky top-0 z-50 w-full h-20 px-6 md:px-12 border-b border-transparent transition-colors duration-300",
+        {
+          "bg-white": !isCreative,
+          "bg-black": isCreative,
+        }
+      )}
     >
       <div className="max-w-7xl mx-auto h-full flex items-center justify-between">
         {/* Left: Logo & Name */}
@@ -86,10 +89,18 @@ export const Header = () => {
           {/* The Reality Switch */}
           <button
             onClick={() => {
-              toggleMode();
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              window.requestAnimationFrame(() => {
+                toggleMode();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              });
             }}
-            className="group relative flex items-center gap-3 px-4 py-2 border border-white/20 rounded-full hover:bg-white/10 transition-all"
+            className={cn(
+              "mode-trigger group relative flex items-center gap-3 px-4 py-2 border rounded-full transition-all",
+              {
+                "border-white/20 hover:bg-white/10 ": !isCreative,
+                "border-purple-400 hover:bg-white/10": isCreative,
+              }
+            )}
             aria-label={
               isCreative
                 ? "Switch to Architect Mode"
@@ -124,7 +135,15 @@ export const Header = () => {
           <a
             href="/cv-ajdin.pdf"
             download
-            className="flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium bg-[var(--text-main)] text-[var(--bg)] rounded-full hover:bg-[var(--accent)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+            className={cn(
+              "flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 ",
+              {
+                "focus-visible:ring-[var(--accent)]bg-[var(--text-main)] text-[var(--bg)] hover:bg-[var(--accent)]":
+                  !isCreative,
+                "focus-visible:ring-purple-400 bg-black text-purple-400 hover:bg-black border-purple-400 border-1":
+                  isCreative,
+              }
+            )}
           >
             <span className="hidden md:inline">Resume</span>
             <span className="md:hidden">CV</span>

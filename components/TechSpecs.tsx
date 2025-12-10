@@ -14,7 +14,7 @@ import {
   ShieldCheckIcon, // Quality
 } from "@heroicons/react/24/outline";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const TechSpecs = () => {
   const containerRef = useRef<HTMLDivElement>(null);

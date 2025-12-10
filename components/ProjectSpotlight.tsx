@@ -9,7 +9,7 @@ import { portfolioData } from "@/data/resume-data";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { ArrowsRightLeftIcon } from "@heroicons/react/24/outline";
 
-gsap.registerPlugin(ScrollTrigger, Draggable);
+gsap.registerPlugin(ScrollTrigger, Draggable, useGSAP);
 
 export const ProjectSpotlight = () => {
   const containerRef = useRef<HTMLDivElement>(null);

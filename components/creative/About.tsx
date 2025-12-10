@@ -2,7 +2,7 @@ export function About() {
   return (
     <section id="about" className="min-h-screen px-8 py-32 relative">
       <div className="max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-12 gap-1 lg:gap:4">
           {/* Left side - Title */}
           <div className="col-span-12 lg:col-span-5">
             <div className="sticky top-32">
@@ -75,7 +75,7 @@ export function About() {
             </div>
 
             {/* Philosophy */}
-            <div className="relative p-10 rounded-3xl bg-gradient-to-br from-purple-900/20 to-blue-900/20 border border-purple-500/20 hobbies-intro">
+            <div className="relative p-4 md:p-10 rounded-3xl bg-gradient-to-br from-purple-900/20 to-blue-900/20 border border-purple-500/20 hobbies-intro">
               <div className="text-4xl mb-6">💭</div>
               <p className="text-2xl text-gray-300 italic leading-relaxed">
                 &quot;Life is about balance: Clean code and good food. Solid

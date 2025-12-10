@@ -8,7 +8,7 @@ import { portfolioData } from "@/data/resume-data";
 import { SectionShell } from "./SectionShell";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const Projects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -76,23 +76,23 @@ export const Projects = () => {
       label={portfolioData.ui.labels.projects}
       className="overflow-hidden"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 lg:gap:4">
         {/* Column 1 */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-1 lg:gap:4">
           {col1.map((p) => (
             <ProjectCard key={p.id} project={p} />
           ))}
         </div>
 
         {/* Column 2 (Parallax only on Desktop) */}
-        <div className="parallax-col flex flex-col gap-8 md:pt-12">
+        <div className="parallax-col flex flex-col gap-1 lg:gap:4 md:pt-12">
           {col2.map((p) => (
             <ProjectCard key={p.id} project={p} />
           ))}
         </div>
 
         {/* Column 3 */}
-        <div className="flex flex-col gap-8 md:pt-24">
+        <div className="flex flex-col gap-1 lg:gap:4 md:pt-24">
           {col3.map((p) => (
             <ProjectCard key={p.id} project={p} />
           ))}

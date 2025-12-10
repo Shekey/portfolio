@@ -103,7 +103,7 @@ export function WeekendVibes() {
         {/* Activity Display */}
         <div className="mb-16 weekend-card">
           <div
-            className={`relative overflow-hidden rounded-[3rem] bg-gradient-to-br ${activity.color} p-12 border-4 border-white/10 transition-all duration-700 ${isShuffling ? "scale-95" : "scale-100"}`}
+            className={`relative overflow-hidden rounded-[3rem] bg-gradient-to-br ${activity.color} p-6 md:p-12 border-4 border-white/10 transition-all duration-700 ${isShuffling ? "scale-95" : "scale-100"}`}
           >
             {/* Animated background circles */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse" />
@@ -114,7 +114,7 @@ export function WeekendVibes() {
 
             <div className="relative z-10">
               <div
-                className="text-9xl mb-8 animate-bounce"
+                className="text-8xl mb-4 md:text-9xl md:mb-8 animate-bounce"
                 style={{ animationDuration: "2s" }}
               >
                 {activity.emoji}
@@ -124,8 +124,12 @@ export function WeekendVibes() {
                   {activity.vibe}
                 </span>
               </div>
-              <h3 className="text-6xl mb-6 text-white">{activity.title}</h3>
-              <p className="text-2xl text-white/80">{activity.description}</p>
+              <h3 className="text-4xl md:text-6xl mb-6 text-white">
+                {activity.title}
+              </h3>
+              <p className="text-xl md:text-2xl text-white/80">
+                {activity.description}
+              </p>
             </div>
           </div>
         </div>
@@ -135,7 +139,7 @@ export function WeekendVibes() {
           <button
             onClick={shuffleActivity}
             disabled={isShuffling}
-            className="group relative inline-flex items-center gap-3 px-12 py-6 bg-white text-black rounded-full text-xl hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:scale-100"
+            className="group relative inline-flex items-center gap-3 p-6 md:px-12 md:py-6 bg-white text-black rounded-full text-xl hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:scale-100"
           >
             <Shuffle
               className={`w-6 h-6 ${isShuffling ? "animate-spin" : "group-hover:rotate-180"} transition-transform duration-500`}

@@ -8,7 +8,7 @@ export function Contact() {
       className="min-h-screen px-8 py-32 relative flex items-center"
     >
       <div className="max-w-[1600px] mx-auto w-full">
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-12 gap-1 lg:gap:4">
           {/* Left - CTA */}
           <div className="col-span-12 lg:col-span-7 space-y-12">
             <div className="space-y-6">
@@ -101,7 +101,7 @@ export function Contact() {
               © {new Date().getFullYear()} Ajdin Šahinbegović. Built with
               passion (and lots of coffee ☕)
             </div>
-            <div className="flex gap-8">
+            <div className="flex gap-1 lg:gap:4">
               <span className="text-gray-600">Not your typical portfolio</span>
             </div>
           </div>

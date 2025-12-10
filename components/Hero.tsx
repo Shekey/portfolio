@@ -7,6 +7,8 @@ import { portfolioData } from "@/data/resume-data";
 import { SectionShell } from "./SectionShell";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
+gsap.registerPlugin(useGSAP);
+
 export const Hero = () => {
   const { isCreative, isLoading } = useViewMode();
   const containerRef = useRef<HTMLDivElement>(null);

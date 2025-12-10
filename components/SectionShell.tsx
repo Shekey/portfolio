@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { SectionHeader } from "./SectionHeader";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 interface SectionProps {
   id?: string;

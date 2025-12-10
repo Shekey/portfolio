@@ -6,6 +6,8 @@ import { useViewMode } from "@/store/useViewMode";
 import { portfolioData } from "@/data/resume-data";
 import { cn } from "@/lib/utils";
 
+gsap.registerPlugin(useGSAP);
+
 export const Preloader = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { isLoading, setLoaded } = useViewMode();

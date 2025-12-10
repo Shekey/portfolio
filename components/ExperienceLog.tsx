@@ -7,7 +7,7 @@ import { portfolioData } from "@/data/resume-data";
 import { SectionShell } from "./SectionShell";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 export const ExperienceLog = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -52,7 +52,7 @@ export const ExperienceLog = () => {
           {portfolioData.jobs.map((job, index) => (
             <div
               key={index}
-              className="job-row group relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0"
+              className="job-row group relative grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-0"
             >
               {/* LEFT COLUMN (Desktop): Date & Version */}
               <div className="hidden md:flex flex-col items-end pr-12 text-right">
