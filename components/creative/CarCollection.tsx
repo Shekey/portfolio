@@ -3,6 +3,7 @@ import { Car, Heart } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -44,6 +45,7 @@ const cars = [
 export function CarCollection() {
   const [flipped, setFlipped] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   // Helper function to play sound safely
   const playImpactSound = () => {
@@ -68,50 +70,65 @@ export function CarCollection() {
       });
 
       // 1. Header Animation (Fade Up)
-      tl.from(".car-header-label, .car-header-title, .car-header-desc", {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-      });
-
-      // 2. Card Stack Animation (Right to Left + Bounce + Sound)
-      tl.from(
-        ".car-card-container",
-        {
-          x: 800, // Slide in from right (pixels)
+      if (!prefersReducedMotion) {
+        tl.from(".car-header-label, .car-header-title, .car-header-desc", {
+          y: 50,
           opacity: 0,
-          rotation: 15, // Slight rotation for "thrown onto table" feel
-          duration: 1.5,
-          stagger: {
-            each: 0.2,
-            onStart: playImpactSound, // 🎵 Play sound when each card starts animating
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+        });
+
+        // 2. Card Stack Animation (Right to Left + Bounce + Sound)
+        tl.from(
+          ".car-card-container",
+          {
+            x: 800, // Slide in from right (pixels)
+            opacity: 0,
+            rotation: 15, // Slight rotation for "thrown onto table" feel
+            duration: 1.5,
+            stagger: {
+              each: 0.2,
+              onStart: playImpactSound, // 🎵 Play sound when each card starts animating
+            },
+            ease: "elastic.out(1, 0.6)", // 🏀 The BOUNCE effect
           },
-          ease: "elastic.out(1, 0.6)", // 🏀 The BOUNCE effect
-        },
-        "-=0.4"
-      ); // Overlap slightly with header animation
+          "-=0.4"
+        ); // Overlap slightly with header animation
 
-      // 3. Fun Fact Animation
-      tl.from(".car-fun-fact", {
-        opacity: 0,
-        scale: 0.8,
-        duration: 1,
-        ease: "back.out(1.7)",
-      });
+        // 3. Fun Fact Animation
+        tl.from(".car-fun-fact", {
+          opacity: 0,
+          scale: 0.8,
+          duration: 1,
+          ease: "back.out(1.7)",
+        });
 
-      // Floating car icon continuous animation
-      gsap.to(".floating-car", {
-        y: -20,
-        rotation: 5,
-        duration: 4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
+        // Floating car icon continuous animation
+        gsap.to(".floating-car", {
+          y: -20,
+          rotation: 5,
+          duration: 4,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      } else {
+        // Reduced Motion: Instant Visibility
+        gsap.set(
+          [
+            ".car-header-label",
+            ".car-header-title",
+            ".car-header-desc",
+            ".car-card-container",
+            ".car-fun-fact",
+            ".floating-car",
+          ],
+          { opacity: 1, x: 0, y: 0, rotation: 0, scale: 1 }
+        );
+      }
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [prefersReducedMotion] }
   );
 
   return (
@@ -154,9 +171,24 @@ export function CarCollection() {
           {cars.map((car, index) => (
             <div
               key={index}
-              className="car-card-container perspective-1000"
+              className="car-card-container perspective-1000 group outline-none focus-visible:ring-4 focus-visible:ring-red-500 rounded-3xl"
               onMouseEnter={() => setFlipped(index)}
               onMouseLeave={() => setFlipped(null)}
+              onFocus={() => setFlipped(index)}
+              onBlur={() => setFlipped(null)}
+              onClick={() =>
+                flipped === index ? setFlipped(null) : setFlipped(index)
+              }
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  flipped === index ? setFlipped(null) : setFlipped(index);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-pressed={flipped === index}
+              aria-label={`View details for ${car.name}`}
             >
               <div
                 className={`relative w-full transition-all duration-700 transform-style-3d car-card ${

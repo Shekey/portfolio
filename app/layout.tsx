@@ -4,6 +4,7 @@ import "./globals.css";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { ThemeWrapper } from "@/components/ThemeWrapper";
 import { Preloader } from "@/components/Preloader";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,6 +72,21 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <ThemeWrapper>
             <Preloader />
+            <Script
+              type="application/ld+json"
+              id="person-ld"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Person",
+                  "name": "Ajdin Šahinbegović",
+                  "jobTitle": "Specialized Software Engineer",
+                  "url": "https://shekeyweb.com",
+                  "sameAs": ["https://github.com/shekey", "https://linkedin.com/in/shekey"],
+                  "description": "Senior Frontend Engineer specializing in scalable architecture, design systems, and high‑performance web applications."
+                })
+              }}
+            />
 
             <div className="animate-fade-in">{children}</div>
           </ThemeWrapper>

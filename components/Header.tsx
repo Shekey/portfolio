@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import {
@@ -75,7 +75,7 @@ export const Header = () => {
         <div className="flex items-center gap-4 md:gap-6">
           <Logo size="md" /> {/* Now displays 'shekey' */}
           <div className="hidden md:flex flex-col">
-            <h1 className="font-bold text-sm tracking-tight leading-none text-[var(--text-main)]">
+            <h1 className={cn("font-bold text-sm tracking-tight leading-none text-[var(--accent)]")}>
               {portfolioData.personal.name}
             </h1>
             <span className="text-[10px] font-mono text-[var(--accent)] tracking-widest uppercase mt-0.5">
@@ -93,16 +93,17 @@ export const Header = () => {
               toggleMode();
             }}
             className={cn(
-              "mode-trigger group relative flex items-center gap-3 px-4 py-2 border rounded-full transition-transform cursor-pointer",
+              "mode-trigger group relative flex items-center gap-3 px-4 py-2 border rounded-full transition-transform cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
               {
-                "border-white/20 hover:bg-white/10 ": !isCreative,
-                "border-purple-400 hover:bg-white/10": isCreative,
+                "border-white/20 hover:bg-white/10 focus-visible:ring-[var(--accent)]": !isCreative,
+                "border-purple-400 hover:bg-white/10 focus-visible:ring-purple-400": isCreative,
               }
             )}
+            aria-live="polite"
             aria-label={
               isCreative
-                ? "Switch to Architect Mode"
-                : "Switch to Creative Mode"
+                ? "Current mode: Personality. Activate to switch to Architect Mode"
+                : "Current mode: Architect. Activate to switch to Personality Mode"
             }
           >
             <span
@@ -134,9 +135,9 @@ export const Header = () => {
             href="/cv-ajdin.pdf"
             download
             className={cn(
-              "flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 ",
+              "flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
               {
-                "focus-visible:ring-[var(--accent)]bg-[var(--text-main)] text-[var(--bg)] bg-[var(--accent)]":
+                "focus-visible:ring-[var(--accent)] bg-[var(--text-main)] text-[var(--bg)] bg-[var(--accent)]":
                   !isCreative,
                 "focus-visible:ring-purple-400 bg-black text-purple-400 hover:bg-black border-purple-400 border-1":
                   isCreative,

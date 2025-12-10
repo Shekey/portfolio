@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
         source: "/ingest/:path*",
         destination: "https://eu.i.posthog.com/:path*",
       },
+       { source: "/api/__next_devtools_mcp/:path*", destination: "/api/__next_devtools_mcp/:path*" },
     ];
   },
 

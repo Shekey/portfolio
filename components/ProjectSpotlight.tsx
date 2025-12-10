@@ -156,6 +156,7 @@ export const ProjectSpotlight = () => {
             <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center pointer-events-none select-none">
               <img
                 src="/theme-a-a.webp"
+                alt="Before comparison image"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               />
             </div>
@@ -167,6 +168,7 @@ export const ProjectSpotlight = () => {
             >
               <img
                 src="/theme-b.webp"
+                alt="After comparison image"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none"
               />
             </div>

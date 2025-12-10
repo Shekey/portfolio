@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"my-mcp-server-f7314bb9": {
+			"type": "stdio",
+			"args": ["-y", "next-devtools-mcp@latest"]
+		}
+	},
+	"inputs": []
+}
