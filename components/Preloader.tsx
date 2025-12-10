@@ -4,11 +4,13 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useViewMode } from "@/store/useViewMode";
 import { portfolioData } from "@/data/resume-data";
+import { cn } from "@/lib/utils";
 
 export const Preloader = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { isLoading, setLoaded } = useViewMode();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
+  const { isCreative } = useViewMode();
   const [message, setMessage] = useState("");
 
   // 1. Pick Message
@@ -108,7 +110,12 @@ export const Preloader = () => {
       className="fixed inset-0 z-[9999] flex items-center justify-center"
     >
       {/* Curtain */}
-      <div className="loader-curtain absolute inset-0 bg-[#050505] w-full h-full" />
+      <div
+        className={cn("loader-curtain absolute inset-0 w-full h-full", {
+          "bg-[#050505]": !isCreative,
+          "bg-white": isCreative,
+        })}
+      />
 
       {/* Content */}
       <div className="loader-content relative z-10 flex flex-col items-center justify-center">
@@ -121,7 +128,10 @@ export const Preloader = () => {
           className="mb-8"
         >
           <path
-            className="svg-path stroke-white stroke-[0.5]"
+            className={cn("svg-path stroke-white stroke-[0.5]", {
+              "stroke-white": !isCreative,
+              "stroke-black": isCreative,
+            })}
             d="M50 5 L90 25 L90 75 L50 95 L10 75 L10 25 Z"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -129,7 +139,10 @@ export const Preloader = () => {
             strokeDashoffset="300"
           />
           <path
-            className="svg-path stroke-[var(--accent)] stroke-[0.5] opacity-60"
+            className={cn("svg-path  stroke-[0.5] opacity-60", {
+              "stroke-[var(--accent)]": !isCreative,
+              "stroke-black": isCreative,
+            })}
             d="M50 5 L50 95 M10 25 L90 75 M90 25 L10 75"
             strokeDasharray="200"
             strokeDashoffset="200"
@@ -137,7 +150,15 @@ export const Preloader = () => {
         </svg>
 
         {/* Text Area */}
-        <div className="boot-text opacity-0 font-mono text-xs text-white/90 tracking-[0.2em] uppercase text-center min-h-[20px] font-medium">
+        <div
+          className={cn(
+            "boot-text opacity-0 font-mono text-xs tracking-[0.2em] uppercase text-center min-h-[20px] font-medium",
+            {
+              "text-white/90 ": !isCreative,
+              "text-black": isCreative,
+            }
+          )}
+        >
           {message}
         </div>
       </div>

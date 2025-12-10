@@ -118,13 +118,18 @@ export const Logo = ({ className, size = "md" }: LogoProps) => {
       role="img"
       aria-label="Shekey Logo"
       className={cn(
-        "relative font-black tracking-tighter cursor-pointer select-none inline-block font-mono",
+        "relative font-black tracking-tighter cursor-pointer select-none inline-block font-mono mix-blend-difference",
         sizeClasses[size],
         className
       )}
     >
       {/* Main Layer: Source of Truth for reading */}
-      <span className="logo-main relative z-20 block text-[var(--text-main)]">
+      <span
+        className={cn("logo-main relative z-20 block", {
+          "text-[var(--text-main)]": !isCreative,
+          "text-white": isCreative,
+        })}
+      >
         shekey
       </span>
 
@@ -132,7 +137,7 @@ export const Logo = ({ className, size = "md" }: LogoProps) => {
       {/* aria-hidden ensures screen readers ignore this decorative text */}
       <span
         aria-hidden="true"
-        className="logo-layer-1 absolute top-0 left-0 z-10 text-rose-600 opacity-0 mix-blend-multiply dark:mix-blend-screen pointer-events-none"
+        className="logo-layer-1 absolute top-0 left-0 z-10 text-rose-600 opacity-0 mix-blend-multiply pointer-events-none"
       >
         shekey
       </span>
@@ -140,7 +145,7 @@ export const Logo = ({ className, size = "md" }: LogoProps) => {
       {/* Glitch Layer 2: Deep Indigo (Better contrast than neon blue) */}
       <span
         aria-hidden="true"
-        className="logo-layer-2 absolute top-0 left-0 z-10 text-indigo-600 opacity-0 mix-blend-multiply dark:mix-blend-screen pointer-events-none"
+        className="logo-layer-2 absolute top-0 left-0 z-10 text-indigo-600 opacity-0 mix-blend-multiply pointer-events-none"
       >
         shekey
       </span>

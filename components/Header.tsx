@@ -85,7 +85,10 @@ export const Header = () => {
         <div className="flex items-center gap-3 md:gap-4">
           {/* The Reality Switch */}
           <button
-            onClick={toggleMode}
+            onClick={() => {
+              toggleMode();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className="group relative flex items-center gap-3 px-4 py-2 border border-white/20 rounded-full hover:bg-white/10 transition-all"
             aria-label={
               isCreative
@@ -101,7 +104,7 @@ export const Header = () => {
                 }
               )}
             >
-              {isCreative ? "Simulation: Active" : "Mode: Architect"}
+              {isCreative ? "Mode: Personality" : "Mode: Architect"}
             </span>
 
             <div className="relative w-6 h-6">
