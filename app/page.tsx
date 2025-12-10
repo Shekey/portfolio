@@ -1,7 +1,6 @@
 "use client";
 import dynamic from "next/dynamic"; // 1. Import dynamic
 import { Header } from "@/components/Header";
-import { Preloader } from "@/components/Preloader";
 import { useViewMode } from "@/store/useViewMode";
 
 const CreativeComponents = dynamic(
@@ -57,9 +56,6 @@ export default function Home() {
         isCreative ? "bg-black" : "bg-[var(--bg)]"
       }`}
     >
-      {/* 3. Conditionally Render */}
-      {/* React will mount this component (and download the bundle) ONLY when isCreative becomes true. */}
-      {/* When becomes false, it unmounts, triggering the cleanup return function in useGSAP. */}
       <Header />
 
       {isCreative && (

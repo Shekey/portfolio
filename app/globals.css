@@ -133,38 +133,11 @@ body {
     }
   }
 }
-/* Custom cursor styles */
-.custom-cursor,
-.custom-cursor-follower {
-  transition: opacity 0.3s ease;
-}
 
 /* Show default cursor on mobile/touch devices */
 @media (hover: none) and (pointer: coarse) {
   body {
     cursor: auto;
-  }
-
-  .custom-cursor,
-  .custom-cursor-follower {
-    display: none;
-  }
-}
-
-/* Smooth transitions for interactive elements */
-a,
-button,
-.project-card,
-.hobby-card {
-  cursor: none;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  a,
-  button,
-  .project-card,
-  .hobby-card {
-    cursor: pointer;
   }
 }
 

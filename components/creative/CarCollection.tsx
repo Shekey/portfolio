@@ -1,5 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Car, Heart } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
+
+// 🔊 SOUND SETUP
+// Replace this URL with your preferred "Car Crash" or "Mechanical Thud" mp3
+const SOUND_URL = "/Crash.mp3";
 
 const cars = [
   {
@@ -33,9 +43,82 @@ const cars = [
 
 export function CarCollection() {
   const [flipped, setFlipped] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Helper function to play sound safely
+  const playImpactSound = () => {
+    const audio = new Audio(SOUND_URL);
+    audio.volume = 0.4; // Keep volume reasonable
+    audio
+      .play()
+      .catch((e) =>
+        console.log("Audio play failed (user interaction needed first)", e)
+      );
+  };
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 60%", // Animation starts when top of section hits 60% of viewport height
+          end: "bottom bottom",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // 1. Header Animation (Fade Up)
+      tl.from(".car-header-label, .car-header-title, .car-header-desc", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power3.out",
+      });
+
+      // 2. Card Stack Animation (Right to Left + Bounce + Sound)
+      tl.from(
+        ".car-card-container",
+        {
+          x: 800, // Slide in from right (pixels)
+          opacity: 0,
+          rotation: 15, // Slight rotation for "thrown onto table" feel
+          duration: 1.5,
+          stagger: {
+            each: 0.2,
+            onStart: playImpactSound, // 🎵 Play sound when each card starts animating
+          },
+          ease: "elastic.out(1, 0.6)", // 🏀 The BOUNCE effect
+        },
+        "-=0.4"
+      ); // Overlap slightly with header animation
+
+      // 3. Fun Fact Animation
+      tl.from(".car-fun-fact", {
+        opacity: 0,
+        scale: 0.8,
+        duration: 1,
+        ease: "back.out(1.7)",
+      });
+
+      // Floating car icon continuous animation
+      gsap.to(".floating-car", {
+        y: -20,
+        rotation: 5,
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    },
+    { scope: containerRef }
+  );
 
   return (
-    <section className="min-h-screen px-8 py-32 relative overflow-hidden">
+    <section
+      ref={containerRef}
+      className="min-h-screen px-8 py-32 relative overflow-hidden bg-gray-950 text-white"
+    >
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-red-900/10 via-black to-orange-900/10" />
 
@@ -45,6 +128,7 @@ export function CarCollection() {
           <Car className="w-64 h-64" />
           <span className="sr-only">Car icon</span>
         </div>
+
         {/* Header */}
         <div className="mb-24">
           <div className="flex items-center gap-4 mb-6 car-header-label">
@@ -89,7 +173,7 @@ export function CarCollection() {
                   className="backface-hidden"
                   style={{ backfaceVisibility: "hidden" }}
                 >
-                  <div className="relative overflow-hidden rounded-3xl bg-gray-900 border-2 border-gray-800 hover:border-red-500/50 transition-all duration-500">
+                  <div className="relative overflow-hidden rounded-3xl bg-gray-900 border-2 border-gray-800 hover:border-red-500/50 transition-all duration-500 cursor-pointer shadow-2xl">
                     <div className="aspect-[4/5] overflow-hidden relative">
                       <img
                         src={car.image}
@@ -107,7 +191,7 @@ export function CarCollection() {
                             {car.status}
                           </span>
                         </div>
-                        <h3 className="text-4xl mb-2">{car.name}</h3>
+                        <h3 className="text-4xl mb-2 font-bold">{car.name}</h3>
                         <p className="text-xl text-gray-400">{car.year}</p>
                       </div>
                     </div>
@@ -122,17 +206,20 @@ export function CarCollection() {
                     transform: "rotateY(180deg)",
                   }}
                 >
-                  <div className="h-full rounded-3xl bg-gradient-to-br from-red-600 to-orange-600 border-2 border-red-500 p-8 flex flex-col justify-center items-center text-center">
+                  <div className="h-full rounded-3xl bg-gradient-to-br from-red-600 to-orange-600 border-2 border-red-500 p-8 flex flex-col justify-center items-center text-center cursor-pointer shadow-[0_0_50px_rgba(220,38,38,0.5)]">
                     <div className="text-6xl mb-6">{car.vibe}</div>
-                    <h3 className="text-3xl mb-6">{car.name}</h3>
+                    <h3 className="text-3xl mb-6 font-bold">{car.name}</h3>
                     <div className="space-y-3">
                       {car.specs.map((spec, i) => (
-                        <div key={i} className="text-lg text-white/90">
+                        <div
+                          key={i}
+                          className="text-lg text-white/90 font-medium"
+                        >
                           • {spec}
                         </div>
                       ))}
                     </div>
-                    <div className="mt-8 text-sm text-white/70 uppercase tracking-widest">
+                    <div className="mt-8 text-sm text-white/70 uppercase tracking-widest font-semibold">
                       One Day In My Driveway
                     </div>
                   </div>

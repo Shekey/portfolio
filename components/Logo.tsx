@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { useViewMode } from "@/store/useViewMode";
 import { cn } from "@/lib/utils";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useLenis } from "./SmoothScrollProvider";
 
 gsap.registerPlugin(useGSAP);
 
@@ -14,9 +15,10 @@ interface LogoProps {
 }
 
 export const Logo = ({ className, size = "md" }: LogoProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLButtonElement>(null);
   const { isCreative } = useViewMode();
   const prefersReducedMotion = usePrefersReducedMotion();
+  const lenis = useLenis();
 
   const sizeClasses = {
     sm: "text-lg",
@@ -115,20 +117,28 @@ export const Logo = ({ className, size = "md" }: LogoProps) => {
   );
 
   return (
-    <div
+    <button
       ref={containerRef}
+      onClick={() => {
+        if (lenis) {
+          lenis.scrollTo(0);
+        }
+      }}
       role="img"
       aria-label="Shekey Logo"
       className={cn(
-        "relative font-black tracking-tighter cursor-pointer select-none inline-block font-mono mix-blend-difference",
+        "relative font-black tracking-tighter cursor-pointer select-none inline-block font-mono",
         sizeClasses[size],
-        className
+        className,
+        {
+          "mix-blend-difference": isCreative,
+        }
       )}
     >
       {/* Main Layer: Source of Truth for reading */}
       <span
         className={cn("logo-main relative z-20 block", {
-          "text-[var(--text-main)]": !isCreative,
+          "text-black": !isCreative,
           "text-white": isCreative,
         })}
       >
@@ -151,6 +161,6 @@ export const Logo = ({ className, size = "md" }: LogoProps) => {
       >
         shekey
       </span>
-    </div>
+    </button>
   );
 };

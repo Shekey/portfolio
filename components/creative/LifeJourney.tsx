@@ -13,7 +13,7 @@ export function LifeJourney() {
           <div className="inline-flex items-center gap-3 mb-6 journey-label">
             <Plane className="w-6 h-6 text-blue-400" />
             <span className="text-sm text-gray-500 uppercase tracking-widest">
-              3 Years Ago
+              {new Date().getFullYear() - 2022} Years Ago
             </span>
           </div>
           <h2 className="text-[clamp(3rem,8vw,8rem)] leading-[0.9] tracking-tighter mb-8 journey-title">

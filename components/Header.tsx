@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import {
@@ -63,7 +63,7 @@ export const Header = () => {
     <header
       ref={headerRef}
       className={cn(
-        "sticky top-0 z-50 w-full h-20 px-6 md:px-12 border-b border-transparent transition-colors duration-300",
+        "sticky top-0 z-50 w-full h-20 px-6 md:px-12 border-b border-transparent duration-300",
         {
           "bg-white": !isCreative,
           "bg-black": isCreative,
@@ -89,13 +89,11 @@ export const Header = () => {
           {/* The Reality Switch */}
           <button
             onClick={() => {
-              window.requestAnimationFrame(() => {
-                toggleMode();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              });
+              gsap.killTweensOf(window);
+              toggleMode();
             }}
             className={cn(
-              "mode-trigger group relative flex items-center gap-3 px-4 py-2 border rounded-full transition-all",
+              "mode-trigger group relative flex items-center gap-3 px-4 py-2 border rounded-full transition-transform cursor-pointer",
               {
                 "border-white/20 hover:bg-white/10 ": !isCreative,
                 "border-purple-400 hover:bg-white/10": isCreative,
@@ -138,7 +136,7 @@ export const Header = () => {
             className={cn(
               "flex items-center gap-2 px-4 py-2 text-xs font-mono font-medium rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 ",
               {
-                "focus-visible:ring-[var(--accent)]bg-[var(--text-main)] text-[var(--bg)] hover:bg-[var(--accent)]":
+                "focus-visible:ring-[var(--accent)]bg-[var(--text-main)] text-[var(--bg)] bg-[var(--accent)]":
                   !isCreative,
                 "focus-visible:ring-purple-400 bg-black text-purple-400 hover:bg-black border-purple-400 border-1":
                   isCreative,
