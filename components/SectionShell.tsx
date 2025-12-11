@@ -78,3 +78,5 @@ export const SectionShell = forwardRef<HTMLDivElement, SectionProps>(
     );
   }
 );
+
+SectionShell.displayName = "SectionShell";

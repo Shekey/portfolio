@@ -29,8 +29,8 @@ export const TechSpecs = () => {
         return;
       }
 
-      const columns = gsap.utils.toArray(".spec-col");
-      columns.forEach((col: any) => {
+      const columns = gsap.utils.toArray(".spec-col") as HTMLElement[];
+      columns.forEach((col) => {
         const items = col.querySelectorAll(".tech-item");
         gsap.fromTo(
           items,

@@ -117,10 +117,17 @@ export const Hero = () => {
               </p>
               <p className="mt-2 text-green-600">engineer.init({"{"}</p>
               <p className="pl-4">
-                mode: <span className="text-orange-500">"Architecture"</span>,
+                mode:{" "}
+                <span className="text-orange-500">
+                  &ldquo;Architecture&rdquo;
+                </span>
+                ,
               </p>
               <p className="pl-4">
-                focus: <span className="text-orange-500">"Design Systems"</span>
+                focus:{" "}
+                <span className="text-orange-500">
+                  &ldquo;Design Systems&rdquo;
+                </span>
               </p>
               <p className="text-green-600">{"}"});</p>
             </div>

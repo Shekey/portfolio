@@ -20,8 +20,8 @@ export const ExperienceLog = () => {
         return;
       }
 
-      const rows = gsap.utils.toArray(".job-row");
-      rows.forEach((row: any) => {
+      const rows = gsap.utils.toArray(".job-row") as HTMLElement[];
+      rows.forEach((row) => {
         gsap.set(row, { opacity: 0, y: 20 });
 
         gsap.to(row, {

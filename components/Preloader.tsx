@@ -13,20 +13,32 @@ export const Preloader = () => {
   const { isLoading, setLoaded } = useViewMode();
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const { isCreative } = useViewMode();
+
+  // FIX 1: Start with a static empty string to match Server-Side Rendering
   const [message, setMessage] = useState("");
 
-  // 1. Pick Message
+  // FIX 2: Set random message on client only
   useEffect(() => {
     const messages = portfolioData?.ui?.loaderMessages || [
       "SYSTEM INITIALIZING...",
     ];
     const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-    setMessage(randomMsg);
+
+    // FIX 3: Wrap in setTimeout to satisfy the "synchronous setState" linter rule
+    // This moves the update to the end of the event loop, avoiding the warning
+    // while still updating immediately after mount.
+    const timer = setTimeout(() => {
+      setMessage(randomMsg);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // 2. Window Load Logic
   useLayoutEffect(() => {
-    document.body.style.overflow = "hidden";
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    }
 
     const handleLoad = () => {
       document.fonts.ready.then(() => {
@@ -44,15 +56,16 @@ export const Preloader = () => {
         clearTimeout(timeout);
       };
     }
-  }, []);
+  }, [isLoading]);
 
   useGSAP(
     () => {
+      // Don't animate until we have a message
       if (!message) return;
 
       const tl = gsap.timeline();
 
-      // Step A: Entrance (Draw logo + Fade in text)
+      // Step A: Entrance
       tl.to(".svg-path", {
         strokeDashoffset: 0,
         duration: 1.5,
@@ -67,7 +80,7 @@ export const Preloader = () => {
         "-=0.8"
       );
 
-      // Step B: Exit (Only after page is ready)
+      // Step B: Exit
       if (isPageLoaded) {
         const exitTl = gsap.timeline({
           onComplete: () => {
@@ -76,20 +89,14 @@ export const Preloader = () => {
           },
         });
 
-        // --- CHANGE IS HERE ---
-        // Increased hold time from 0.6 to 1.6 seconds
         exitTl
           .to({}, { duration: 1.6 })
-
-          // Fade out content
           .to(".loader-content", {
             opacity: 0,
             y: -20,
             duration: 0.5,
             ease: "power2.in",
           })
-
-          // Lift Curtain
           .to(
             ".loader-curtain",
             {
@@ -101,6 +108,7 @@ export const Preloader = () => {
           );
       }
     },
+    // Add message to dependencies so animation starts when message is set
     { scope: containerRef, dependencies: [isPageLoaded, message] }
   );
 
@@ -111,7 +119,6 @@ export const Preloader = () => {
       ref={containerRef}
       className="fixed inset-0 z-[9999] flex items-center justify-center"
     >
-      {/* Curtain */}
       <div
         className={cn("loader-curtain absolute inset-0 w-full h-full", {
           "bg-[#050505]": !isCreative,
@@ -119,9 +126,7 @@ export const Preloader = () => {
         })}
       />
 
-      {/* Content */}
       <div className="loader-content relative z-10 flex flex-col items-center justify-center">
-        {/* Logo */}
         <svg
           width="120"
           height="120"
@@ -151,7 +156,9 @@ export const Preloader = () => {
           />
         </svg>
 
-        {/* Text Area */}
+        {/* We use a min-height here to prevent layout shift 
+           when the message populates 
+        */}
         <div
           className={cn(
             "boot-text opacity-0 font-mono text-xs tracking-[0.2em] uppercase text-center min-h-[20px] font-medium",

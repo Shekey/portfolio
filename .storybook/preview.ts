@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useViewMode } from "../store/useViewMode";
 import "../app/globals.css";
 
-const withViewMode: Decorator = (Story, context) => {
+const useWithViewMOde: Decorator = (Story, context) => {
   const isCreative = context.parameters?.viewMode?.isCreative ?? false;
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const preview: Preview = {
       ],
     },
   },
-  decorators: [withViewMode],
+  decorators: [useWithViewMOde],
 };
 
 export default preview;

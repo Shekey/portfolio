@@ -7,6 +7,7 @@ import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { portfolioData } from "@/data/resume-data";
 import { SectionShell } from "./SectionShell";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -44,8 +45,8 @@ export const Projects = () => {
       });
 
       // 2. ALL DEVICES: Cinematic Card Reveal
-      const cards = gsap.utils.toArray(".project-card");
-      cards.forEach((card: any) => {
+      const cards = gsap.utils.toArray(".project-card") as HTMLElement[];
+      cards.forEach((card) => {
         gsap.fromTo(
           card,
           { opacity: 0, y: 50, scale: 0.95 },
@@ -102,7 +103,18 @@ export const Projects = () => {
   );
 };
 
-function ProjectCard({ project }: { project: any }) {
+function ProjectCard({
+  project,
+}: {
+  project: {
+    id: number;
+    title: string;
+    cat: string;
+    img: string;
+    link: string;
+    description: string;
+  };
+}) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const initialClass = prefersReducedMotion ? "opacity-100" : "opacity-0";
 
@@ -121,9 +133,11 @@ function ProjectCard({ project }: { project: any }) {
           </div>
         </div>
 
-        <img
+        <Image
           src={project.img}
           alt={project.title}
+          width={500}
+          height={500}
           className="w-full h-auto object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-in-out"
         />
       </div>
