@@ -1,6 +1,13 @@
+// next.config.ts
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: [
+      "lucide-react", // Critical: Contains hundreds of icons
+      "@heroicons/react", // Critical: Contains hundreds of icons
+    ],
+  },
   images: {
     remotePatterns: [
       {
@@ -17,22 +24,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-
-  async rewrites() {
-    return [
-      {
-        source: "/ingest/static/:path*",
-        destination: "https://eu-assets.i.posthog.com/static/:path*",
-      },
-      {
-        source: "/ingest/:path*",
-        destination: "https://eu.i.posthog.com/:path*",
-      },
-       { source: "/api/__next_devtools_mcp/:path*", destination: "/api/__next_devtools_mcp/:path*" },
-    ];
-  },
-
-  // This is required to support PostHog trailing slash API requests
+  // We handle PostHog in middleware.ts now
   skipTrailingSlashRedirect: true,
 };
 

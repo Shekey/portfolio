@@ -8,43 +8,43 @@ const CreativeComponents = dynamic(
     import("@/components/creative/CreativeComponents").then(
       (mod) => mod.CreativeComponents
     ),
-  { ssr: false } // No server rendering for this chaos engine
+  { ssr: true } // No server rendering for this chaos engine
 );
 
 const Hero = dynamic(
   () => import("@/components/Hero").then((mod) => mod.Hero),
-  { ssr: false } // No server rendering for this chaos engine
+  { ssr: true } // No server rendering for this chaos engine
 );
 
 const Statement = dynamic(
   () => import("@/components/Statement").then((mod) => mod.Statement),
-  { ssr: false } // No server rendering for this chaos engine
+  { ssr: true } // No server rendering for this chaos engine
 );
 
 const ProjectSpotlight = dynamic(
   () =>
     import("@/components/ProjectSpotlight").then((mod) => mod.ProjectSpotlight),
-  { ssr: false } // No server rendering for this chaos engine
+  { ssr: true } // No server rendering for this chaos engine
 );
 
 const Projects = dynamic(
   () => import("@/components/Projects").then((mod) => mod.Projects),
-  { ssr: false } // No server rendering for this chaos engine
+  { ssr: true } // No server rendering for this chaos engine
 );
 
 const TechSpecs = dynamic(
   () => import("@/components/TechSpecs").then((mod) => mod.TechSpecs),
-  { ssr: false } // No server rendering for this chaos engine
+  { ssr: true } // No server rendering for this chaos engine
 );
 
 const ExperienceLog = dynamic(
   () => import("@/components/ExperienceLog").then((mod) => mod.ExperienceLog),
-  { ssr: false } // No server rendering for this chaos engine
+  { ssr: true } // No server rendering for this chaos engine
 );
 
 const Footer = dynamic(
   () => import("@/components/Footer").then((mod) => mod.Footer),
-  { ssr: false } // No server rendering for this chaos engine
+  { ssr: true } // No server rendering for this chaos engine
 );
 
 export default function Home() {

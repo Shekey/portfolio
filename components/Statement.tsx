@@ -45,7 +45,7 @@ export const Statement = () => {
   return (
     <section
       ref={containerRef}
-      className="relative h-[150vh] bg-[var(--bg)] transition-colors duration-500"
+      className="relative min-h-[150vh] bg-[var(--bg)] transition-colors duration-500"
     >
       {/* Sticky Container */}
       <div className="sticky top-0 h-screen flex flex-col justify-center px-6 md:px-12">

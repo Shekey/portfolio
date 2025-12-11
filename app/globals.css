@@ -3,9 +3,7 @@
 @theme {
   --font-sans: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
-}
 
-:root {
   /* ARCHITECT THEME (Default) */
   --bg: #ffffff;
   --text-main: #111111;
