@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Analytics & Error Tracking
+
+- Set `NEXT_PUBLIC_POSTHOG_KEY` in `.env.local` to enable tracking.
+- Optional: `NEXT_PUBLIC_POSTHOG_HOST` (defaults to `https://eu.posthog.com`).
+- Optional: `NEXT_PUBLIC_POSTHOG_RECORDING=true` to enable session recording.
+- Events captured: `resume_download`, `contact_click` (email/linkedin/github), `mode_toggle`, `page_completion`, `web_vital`, and `client_error`.
+
 ## Getting Started
 
 First, run the development server:
