@@ -12,6 +12,7 @@ import { portfolioData } from "@/data/resume-data";
 import { Logo } from "@/components/Logo";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/lib/utils";
+import { captureEvent } from "@/lib/posthog";
 
 gsap.registerPlugin(useGSAP);
 
@@ -75,7 +76,11 @@ export const Header = () => {
         <div className="flex items-center gap-4 md:gap-6">
           <Logo size="md" /> {/* Now displays 'shekey' */}
           <div className="hidden md:flex flex-col">
-            <h1 className={cn("font-bold text-sm tracking-tight leading-none text-[var(--accent)]")}>
+            <h1
+              className={cn(
+                "font-bold text-sm tracking-tight leading-none text-[var(--accent)]"
+              )}
+            >
               {portfolioData.personal.name}
             </h1>
             <span className="text-[10px] font-mono text-[var(--accent)] tracking-widest uppercase mt-0.5">
@@ -88,15 +93,21 @@ export const Header = () => {
         <div className="flex items-center gap-3 md:gap-4">
           {/* The Reality Switch */}
           <button
+            data-testid="mode-toggle"
             onClick={() => {
               gsap.killTweensOf(window);
+              captureEvent("mode_toggle", {
+                nextMode: isCreative ? "architect" : "creative",
+              });
               toggleMode();
             }}
             className={cn(
               "mode-trigger group relative flex items-center gap-3 px-4 py-2 border rounded-full transition-transform cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
               {
-                "border-white/20 hover:bg-white/10 focus-visible:ring-[var(--accent)]": !isCreative,
-                "border-purple-400 hover:bg-white/10 focus-visible:ring-purple-400": isCreative,
+                "border-white/20 hover:bg-white/10 focus-visible:ring-[var(--accent)]":
+                  !isCreative,
+                "border-purple-400 hover:bg-white/10 focus-visible:ring-purple-400":
+                  isCreative,
               }
             )}
             aria-live="polite"
@@ -143,6 +154,12 @@ export const Header = () => {
                   isCreative,
               }
             )}
+            data-testid="resume-link"
+            onClick={() =>
+              captureEvent("resume_download", {
+                source: "header",
+              })
+            }
           >
             <span className="hidden md:inline">Resume</span>
             <span className="md:hidden">CV</span>

@@ -8,6 +8,7 @@ import { SectionShell } from "./SectionShell";
 import { portfolioData } from "@/data/resume-data";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { ArrowsRightLeftIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger, Draggable, useGSAP);
 
@@ -154,10 +155,12 @@ export const ProjectSpotlight = () => {
 
             {/* Bottom Layer */}
             <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center pointer-events-none select-none">
-              <img
+              <Image
                 src="/theme-a-a.webp"
                 alt="Before comparison image"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                width={500}
+                height={500}
               />
             </div>
 
@@ -166,10 +169,12 @@ export const ProjectSpotlight = () => {
               ref={topImageRef}
               className="absolute inset-0 bg-white flex items-center justify-center pointer-events-none select-none"
             >
-              <img
+              <Image
                 src="/theme-b.webp"
                 alt="After comparison image"
                 className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                width={500}
+                height={500}
               />
             </div>
 

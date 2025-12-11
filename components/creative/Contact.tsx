@@ -1,4 +1,5 @@
 import { portfolioData } from "@/data/resume-data";
+import { captureEvent } from "@/lib/posthog";
 
 export function Contact() {
   const { personal } = portfolioData;
@@ -32,6 +33,12 @@ export function Contact() {
             <a
               href={`mailto:${personal.email}`}
               className="contact-link inline-block group"
+              onClick={() =>
+                captureEvent("contact_click", {
+                  channel: "email",
+                  source: "creative",
+                })
+              }
             >
               <div className="text-[clamp(1.5rem,4vw,3rem)] tracking-tight border-b-2 border-white/20 pb-2 group-hover:border-purple-500 transition-colors">
                 {personal.email}
@@ -63,18 +70,36 @@ export function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="contact-link block text-xl text-gray-300 hover:text-white transition-colors"
+                    onClick={() =>
+                      captureEvent("contact_click", {
+                        channel: "linkedin",
+                        source: "creative",
+                      })
+                    }
                   >
                     LinkedIn →
                   </a>
                   <a
                     href={`mailto:${personal.email}`}
                     className="contact-link block text-xl text-gray-300 hover:text-white transition-colors"
+                    onClick={() =>
+                      captureEvent("contact_click", {
+                        channel: "email",
+                        source: "creative",
+                      })
+                    }
                   >
                     Email →
                   </a>
                   <a
                     href={personal.github}
                     className="contact-link block text-xl text-gray-300 hover:text-white transition-colors"
+                    onClick={() =>
+                      captureEvent("contact_click", {
+                        channel: "github",
+                        source: "creative",
+                      })
+                    }
                   >
                     GitHub →
                   </a>

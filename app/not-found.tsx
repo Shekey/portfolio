@@ -21,7 +21,7 @@ export default function NotFound() {
         </h1>
         <p className="text-[var(--text-muted)] text-lg leading-relaxed">
           The coordinates you are looking for do not exist in this sector.
-          Let's get you back to solid ground.
+          Let&apos;s get you back to solid ground.
         </p>
 
         <Link

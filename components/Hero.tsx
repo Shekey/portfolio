@@ -92,9 +92,7 @@ export const Hero = () => {
         {/* Left: Text */}
         <div className="text-center md:text-left">
           <h1 className="hero-fade text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] mb-8 text-[var(--text-main)] opacity-0 translate-y-4">
-            {isCreative
-              ? "Forging digital reality."
-              : portfolioData.personal.name}
+            {portfolioData.personal.name}
           </h1>
           <p className="hero-fade text-lg md:text-xl text-[var(--text-muted)] leading-relaxed max-w-lg mx-auto md:mx-0 opacity-0 translate-y-4">
             {portfolioData.personal.summary}
@@ -119,10 +117,17 @@ export const Hero = () => {
               </p>
               <p className="mt-2 text-green-600">engineer.init({"{"}</p>
               <p className="pl-4">
-                mode: <span className="text-orange-500">"Architecture"</span>,
+                mode:{" "}
+                <span className="text-orange-500">
+                  &ldquo;Architecture&rdquo;
+                </span>
+                ,
               </p>
               <p className="pl-4">
-                focus: <span className="text-orange-500">"Design Systems"</span>
+                focus:{" "}
+                <span className="text-orange-500">
+                  &ldquo;Design Systems&rdquo;
+                </span>
               </p>
               <p className="text-green-600">{"}"});</p>
             </div>

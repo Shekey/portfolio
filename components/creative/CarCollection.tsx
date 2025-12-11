@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import Image from "next/image";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -182,7 +183,11 @@ export function CarCollection() {
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
-                  flipped === index ? setFlipped(null) : setFlipped(index);
+                  if (flipped === index) {
+                    setFlipped(null);
+                  } else {
+                    setFlipped(index);
+                  }
                 }
               }}
               tabIndex={0}
@@ -207,10 +212,12 @@ export function CarCollection() {
                 >
                   <div className="relative overflow-hidden rounded-3xl bg-gray-900 border-2 border-gray-800 hover:border-red-500/50 transition-all duration-500 cursor-pointer shadow-2xl">
                     <div className="aspect-[4/5] overflow-hidden relative">
-                      <img
+                      <Image
                         src={car.image}
                         alt={car.name}
                         className="w-full h-full object-cover"
+                        width={500}
+                        height={500}
                       />
                       {/* Overlay gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />

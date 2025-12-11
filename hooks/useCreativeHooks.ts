@@ -205,20 +205,6 @@ export function useGSAPAnimations() {
       ease: "back.out(1.2)",
     });
 
-    // Parallax effect for hobby images
-    gsap.utils.toArray(".hobby-image").forEach((image: any) => {
-      gsap.to(image, {
-        scrollTrigger: {
-          trigger: image,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-        y: -50,
-        ease: "none",
-      });
-    });
-
     // Animated SVG path
     const path = document.querySelector("#animatedPath");
     if (path) {
@@ -242,16 +228,14 @@ export function useGSAPAnimations() {
     }
 
     // Project cards animations
-    gsap.utils.toArray(".project-card").forEach((card: any, index: number) => {
+
+    const projectCards = gsap.utils.toArray(".project-card") as HTMLElement[];
+    projectCards.forEach((card: HTMLElement) => {
       gsap.from(card, {
         scrollTrigger: {
           trigger: card,
           start: "top 80%",
         },
-        opacity: 0,
-        y: 100,
-        duration: 1,
-        delay: index * 0.1,
       });
 
       // Parallax effect for project images
