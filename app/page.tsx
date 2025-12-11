@@ -11,39 +11,11 @@ const CreativeComponents = dynamic(
   { ssr: true } // No server rendering for this chaos engine
 );
 
-const Hero = dynamic(
-  () => import("@/components/Hero").then((mod) => mod.Hero),
-  { ssr: true } // No server rendering for this chaos engine
-);
-
-const Statement = dynamic(
-  () => import("@/components/Statement").then((mod) => mod.Statement),
-  { ssr: true } // No server rendering for this chaos engine
-);
-
-const ProjectSpotlight = dynamic(
+const ArchitectComponents = dynamic(
   () =>
-    import("@/components/ProjectSpotlight").then((mod) => mod.ProjectSpotlight),
-  { ssr: true } // No server rendering for this chaos engine
-);
-
-const Projects = dynamic(
-  () => import("@/components/Projects").then((mod) => mod.Projects),
-  { ssr: true } // No server rendering for this chaos engine
-);
-
-const TechSpecs = dynamic(
-  () => import("@/components/TechSpecs").then((mod) => mod.TechSpecs),
-  { ssr: true } // No server rendering for this chaos engine
-);
-
-const ExperienceLog = dynamic(
-  () => import("@/components/ExperienceLog").then((mod) => mod.ExperienceLog),
-  { ssr: true } // No server rendering for this chaos engine
-);
-
-const Footer = dynamic(
-  () => import("@/components/Footer").then((mod) => mod.Footer),
+    import("@/components/architect/ArchitectComponents").then(
+      (mod) => mod.ArchitectComponents
+    ),
   { ssr: true } // No server rendering for this chaos engine
 );
 
@@ -57,44 +29,13 @@ export default function Home() {
       }`}
     >
       <Header />
-
       {isCreative && (
         <>
           <CreativeComponents />
         </>
       )}
 
-      {!isCreative && (
-        <>
-          <div className="section-shell">
-            <Hero />
-          </div>
-
-          <div className="section-shell">
-            <Statement />
-          </div>
-
-          <div className="section-shell">
-            <ProjectSpotlight />
-          </div>
-
-          <div className="section-shell">
-            <Projects />
-          </div>
-
-          <div className="section-shell">
-            <TechSpecs />
-          </div>
-
-          <div className="section-shell">
-            <ExperienceLog />
-          </div>
-
-          <div className="section-shell">
-            <Footer />
-          </div>
-        </>
-      )}
+      {!isCreative && <ArchitectComponents />}
 
       {/* Grid Overlay (Visual only, light enough to keep in main bundle) */}
       <div

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SectionShell } from "@/components/SectionShell";
+import { SectionShell } from "@/components/architect/SectionShell";
 
 const meta: Meta<typeof SectionShell> = {
   title: "App/SectionShell",
@@ -20,4 +20,3 @@ export default meta;
 type Story = StoryObj<typeof SectionShell>;
 
 export const Default: Story = {};
-

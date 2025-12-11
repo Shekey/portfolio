@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // 🔊 SOUND SETUP
 // Replace this URL with your preferred "Car Crash" or "Mechanical Thud" mp3
-const SOUND_URL = "/Crash.mp3";
+const SOUND_URL = "/car-tires.mp3";
 
 const cars = [
   {

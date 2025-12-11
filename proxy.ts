@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
+async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   // 1. Handle PostHog STATIC assets (Safe to cache long-term)
@@ -65,3 +65,5 @@ export const config = {
   // Only run middleware on the ingest paths to save performance
   matcher: "/ingest/:path*",
 };
+
+export default proxy;

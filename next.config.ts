@@ -2,12 +2,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    optimizePackageImports: [
-      "lucide-react", // Critical: Contains hundreds of icons
-      "@heroicons/react", // Critical: Contains hundreds of icons
-    ],
-  },
   images: {
     remotePatterns: [
       {

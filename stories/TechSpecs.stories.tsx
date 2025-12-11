@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { TechSpecs } from "@/components/TechSpecs";
+import { TechSpecs } from "@/components/architect/TechSpecs";
 
 const meta: Meta<typeof TechSpecs> = {
   title: "App/TechSpecs",
@@ -12,4 +12,3 @@ export default meta;
 type Story = StoryObj<typeof TechSpecs>;
 
 export const Default: Story = {};
-
