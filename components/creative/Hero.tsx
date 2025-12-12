@@ -1,3 +1,5 @@
+import { portfolioData } from "@/data/resume-data";
+
 export function Hero() {
   return (
     <section className="min-h[min(100dvh, 800px)] flex flex-col justify-center items-center px-8 relative overflow-hidden">
@@ -21,12 +23,22 @@ export function Hero() {
           <div className="overflow-hidden">
             <h1 className="text-[clamp(3rem,12vw,14rem)] leading-[0.9] tracking-tighter hero-line">
               Not Your
+              <span className="sr-only">
+                {" "}
+                <span className="sr-only">
+                  <span>
+                    {portfolioData.personal.name} -{" "}
+                    {portfolioData.personal.title}
+                  </span>
+                  <span>Berlin | {portfolioData.personal.subtitle}</span>
+                </span>
+              </span>
             </h1>
           </div>
           <div className="overflow-hidden">
-            <h1 className="text-[clamp(3rem,12vw,14rem)] leading-[0.9] tracking-tighter hero-line">
+            <h2 className="text-[clamp(3rem,12vw,14rem)] leading-[0.9] tracking-tighter hero-line">
               Typical CV
-            </h1>
+            </h2>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between pt-8">

@@ -20,10 +20,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ajdin Šahinbegović | Specialized Software Engineer",
+  // SEO STRATEGY:
+  // 1. "Software Specialist" -> Matches your main goal.
+  // 2. "Frontend Developer" -> Matches high volume search terms.
+  // 3. "Berlin" -> Crucial for local ranking.
+  title: "Ajdin Šahinbegović | Software Specialist & Frontend Developer Berlin",
+
   description:
-    "Senior Frontend Engineer specializing in scalable architecture, design systems, and high-performance React/Next.js applications. Bridging logic and imagination.",
+    "Senior Frontend Engineer based in Berlin specializing in building high-performance websites and scalable React/Next.js architecture. Expert in Design Systems and Front-End Development.",
+
   keywords: [
+    // --- The Core Request ---
+    "Software Specialist Berlin",
+    "Frontend Developer",
+    "Front-End Developer",
+    "Building Website Berlin",
+
+    // --- Tech Specifics ---
     "Software Engineer",
     "Frontend Architecture",
     "Design Systems",
@@ -31,34 +44,50 @@ export const metadata: Metadata = {
     "React",
     "DesignOps",
     "WebGL",
+
+    // --- Variations for Reach ---
+    "Web Developer Berlin",
+    "Freelance Developer Germany",
   ],
+
   openGraph: {
-    title: "Ajdin Šahinbegović | Specialized Software Engineer",
+    title:
+      "Ajdin Šahinbegović | Software Specialist & Frontend Developer Berlin",
     description:
-      "Building digital ecosystems. Specialized in Architecture & Design Systems.",
+      "Senior Frontend Engineer based in Berlin. Building digital ecosystems with high-performance Architecture & Design Systems.",
     url: "https://shekeyweb.com",
     siteName: "Ajdin Šahinbegović",
     images: [
       {
-        url: "https://shekeyweb.com/og-image.png", // See suggestion below
+        url: "https://shekeyweb.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ajdin Šahinbegović - Specialized Software Engineer",
+        alt: "Ajdin Šahinbegović - Software Specialist & Frontend Developer Berlin",
       },
     ],
-    locale: "en_US",
+    locale: "en_DE",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Ajdin Šahinbegović | Specialized Software Engineer",
+    title:
+      "Ajdin Šahinbegović | Software Specialist & Frontend Developer Berlin",
     description:
-      "Building digital ecosystems. Specialized in Architecture & Design Systems.",
+      "Senior Frontend Engineer based in Berlin. Building digital ecosystems and scalable web architecture.",
     images: ["https://shekeyweb.com/og-image.png"],
   },
+
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

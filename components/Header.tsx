@@ -76,13 +76,13 @@ export const Header = () => {
         <div className="flex items-center gap-4 md:gap-6">
           <Logo size="md" /> {/* Now displays 'shekey' */}
           <div className="hidden md:flex flex-col">
-            <h1
+            <h2
               className={cn(
                 "font-bold text-sm tracking-tight leading-none text-[var(--accent)]"
               )}
             >
               {portfolioData.personal.name}
-            </h1>
+            </h2>
             <span className="text-[10px] font-mono text-[var(--accent)] tracking-widest uppercase mt-0.5">
               {portfolioData.personal.title}
             </span>
