@@ -25,7 +25,7 @@ export function Contact() {
               </h2>
               <p className="text-xl text-gray-400 max-w-lg">
                 Whether you want to discuss React architectures, debate which
-                90s car is the best, or just grab a coffee in Berlin — I&apos;m
+                90s car is the best, or just grab a coffee in Berlin ~ I&apos;m
                 down!
               </p>
             </div>

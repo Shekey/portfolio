@@ -75,7 +75,7 @@ export const Header = () => {
         {/* Left: Logo & Name */}
         <div className="flex items-center gap-4 md:gap-6">
           <Logo size="md" /> {/* Now displays 'shekey' */}
-          <div className="hidden md:flex flex-col">
+          <div className="hidden sm:flex flex-col">
             <h2
               className={cn(
                 "font-bold text-sm tracking-tight leading-none text-[var(--accent)]"
@@ -130,12 +130,20 @@ export const Header = () => {
 
             <div className="relative w-6 h-6">
               <div
-                className={`absolute inset-0 transition-all duration-500 ${isCreative ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"}`}
+                className={`absolute inset-0 transition-all duration-500 ${
+                  isCreative
+                    ? "opacity-0 rotate-90 scale-50"
+                    : "opacity-100 rotate-0 scale-100"
+                }`}
               >
                 <CubeTransparentIcon /> {/* Architect Icon */}
               </div>
               <div
-                className={`absolute inset-0 text-purple-400 transition-all duration-500 ${isCreative ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"}`}
+                className={`absolute inset-0 text-purple-400 transition-all duration-500 ${
+                  isCreative
+                    ? "opacity-100 rotate-0 scale-100"
+                    : "opacity-0 -rotate-90 scale-50"
+                }`}
               >
                 <SparklesIcon /> {/* Creative Icon */}
               </div>

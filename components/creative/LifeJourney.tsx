@@ -20,8 +20,8 @@ export function LifeJourney() {
             Bosnia → Berlin
           </h2>
           <p className="text-2xl text-gray-400 max-w-3xl mx-auto journey-desc">
-            From the emerald lakes and mountains of Bosnia to the vibrant tech
-            scene of Berlin. A journey that shaped who I am today.
+            From the lakes and mountains of Bosnia to the tech scene in Berlin.
+            Same guy, just with a bit more TypeScript and a bit less ćevapi.
           </p>
         </div>
 

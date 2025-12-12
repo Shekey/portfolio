@@ -23,8 +23,9 @@ export function About() {
             <div className="space-y-8">
               <div className="space-y-6">
                 <p className="text-3xl text-gray-300 leading-relaxed about-intro">
-                  I&apos;m Ajdin — Software Engineer at Dr. Oetker by day, 90s
-                  car enthusiast and BBQ master by night.
+                  I&apos;m Ajdin, Software Engineer at Dr. Oetker by day, 90s
+                  car enthusiast and BBQ master by night. Most weeks are a mix
+                  of React code, gym sessions, and planning the next road trip.
                 </p>
                 <p className="text-xl text-gray-400 leading-relaxed about-description">
                   Three years ago, I made the jump from the beautiful lakes of
@@ -35,8 +36,8 @@ export function About() {
                 <p className="text-xl text-gray-400 leading-relaxed about-description">
                   I believe in working hard at the gym, grilling harder with
                   friends, and keeping that Bosnian spirit alive wherever I go.
-                  Life&apos;s too short for boring portfolios — let&apos;s have
-                  some fun!
+                  Life&apos;s too short for boring portfolios, sooo let&apos;s
+                  have some fun!
                 </p>
               </div>
             </div>
@@ -78,11 +79,10 @@ export function About() {
             <div className="relative p-4 md:p-10 rounded-3xl bg-gradient-to-br from-purple-900/20 to-blue-900/20 border border-purple-500/20 hobbies-intro">
               <div className="text-4xl mb-6">💭</div>
               <p className="text-2xl text-gray-300 italic leading-relaxed">
-                &quot;Life is about balance: Clean code and good food. Solid
-                architecture and solid friendships. Debugging errors and
-                debugging yourself.&quot;
+                &quot;Life is best somewhere between quiet lakes, loud engines,
+                and a table full of friends.&quot;
               </p>
-              <p className="text-gray-500 mt-4">— My personal motto</p>
+              <p className="text-gray-500 mt-4"> - My personal moto</p>
             </div>
           </div>
         </div>

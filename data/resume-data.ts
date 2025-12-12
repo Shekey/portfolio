@@ -4,7 +4,7 @@ export const portfolioData = {
     title: "Specialized Software Engineer", // REBRANDED
     subtitle: "Frontend Architecture & Design Systems",
     summary:
-      "I specialize in bridging the gap between complex backend logic and fluid user interfaces. My focus is on performance, accessibility, and scalability—ensuring that beautiful experiences are also robust products.",
+      "I'm a Senior Frontend & Full-Stack Developer based in Berlin, specializing in React/Next.js and scalable frontend architecture. I focus on bridging the gap between complex backend logic and fluid user interfaces, so that high-performance, accessible products stay consistent and maintainable at scale.",
     email: "ajdinsheki@gmail.com",
     linkedin: "www.linkedin.com/in/ajdin-sahinbegovic",
     github: "github.com/Shekey",
@@ -19,7 +19,7 @@ export const portfolioData = {
     },
   },
   statement: {
-    text: "I believe that robust architecture and fluid creativity are not opposites. They are the twin engines of a truly great digital product. Code is the structure; motion is the soul.",
+    text: "My philosophy is simple: design the system first, then polish the pixels. Strong architecture, clear boundaries, and boring reliability make room for interfaces that feel fast and fun to use.",
   },
   projects: [
     {
@@ -209,7 +209,7 @@ export const portfolioData = {
   spotlight: {
     title: "Multi-Tenant Greenfield Architecture",
     description:
-      "A single codebase powering 40+ distinct brand experiences. By decoupling the design tokens from the logic layer, we achieved a scalable 'Theme Engine' that allows instant re-branding without code changes.",
+      "A single codebase powers 40+ brand experiences. By separating design tokens from the application logic, we built a scalable theme engine that lets us rebrand instantly ~ without touching the code.",
     tags: ["Greenfield", "White-label", "Design Tokens"],
   },
   ui: {

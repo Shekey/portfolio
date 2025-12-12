@@ -29,12 +29,7 @@ export default function Home() {
       }`}
     >
       <Header />
-      {isCreative && (
-        <>
-          <CreativeComponents />
-        </>
-      )}
-
+      {isCreative && <CreativeComponents />}
       {!isCreative && <ArchitectComponents />}
 
       {/* Grid Overlay (Visual only, light enough to keep in main bundle) */}

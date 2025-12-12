@@ -24,37 +24,53 @@ export const metadata: Metadata = {
   // 1. "Software Specialist" -> Matches your main goal.
   // 2. "Frontend Developer" -> Matches high volume search terms.
   // 3. "Berlin" -> Crucial for local ranking.
-  title: "Ajdin Šahinbegović | Software Specialist & Frontend Developer Berlin",
+  title: "Ajdin Šahinbegović | Frontend & Full-Stack Developer Berlin",
 
   description:
-    "Senior Frontend Engineer based in Berlin specializing in building high-performance websites and scalable React/Next.js architecture. Expert in Design Systems and Front-End Development.",
+    "Senior Frontend & Full-Stack Developer based in Berlin. Specializing in high-performance React/Next.js, scalable frontend architecture, and Design Systems. Available for freelance and full-time roles in Berlin.",
 
   keywords: [
-    // --- The Core Request ---
-    "Software Specialist Berlin",
-    "Frontend Developer",
-    "Front-End Developer",
-    "Building Website Berlin",
+    // --- Glavne fraze za Berlin ---
+    "Frontend Developer Berlin",
+    "Full-Stack Developer Berlin",
+    "React Developer Berlin",
+    "Next.js Developer Berlin",
+    "Frontend Architecture Berlin",
+    "Design Systems Berlin",
 
-    // --- Tech Specifics ---
-    "Software Engineer",
-    "Frontend Architecture",
-    "Design Systems",
-    "Next.js",
+    // --- Tehnologije ---
     "React",
-    "DesignOps",
-    "WebGL",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "NestJS",
+    "GraphQL",
+    "REST API",
+    "Micro-frontends",
+    "Tailwind CSS",
+    "Figma API",
+    "Design Tokens",
+    "Headless CMS",
+    "Algolia",
+    "Playwright",
+    "Cypress",
+    "Zod",
+    "CI/CD",
+    "Docker",
+    "AWS",
 
-    // --- Variations for Reach ---
+    // --- Varijacije za reach ---
     "Web Developer Berlin",
-    "Freelance Developer Germany",
+    "Freelance Developer Berlin",
+    "Senior Frontend Engineer Berlin",
+    "Frontend Specialist Berlin",
+    "Frontend Full-Stack Developer Berlin",
   ],
 
   openGraph: {
-    title:
-      "Ajdin Šahinbegović | Software Specialist & Frontend Developer Berlin",
+    title: "Ajdin Šahinbegović | Frontend & Full-Stack Developer Berlin",
     description:
-      "Senior Frontend Engineer based in Berlin. Building digital ecosystems with high-performance Architecture & Design Systems.",
+      "Senior Frontend & Full-Stack Developer based in Berlin. Specializing in high-performance React/Next.js, scalable frontend architecture, and Design Systems.",
     url: "https://shekeyweb.com",
     siteName: "Ajdin Šahinbegović",
     images: [
@@ -62,7 +78,7 @@ export const metadata: Metadata = {
         url: "https://shekeyweb.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ajdin Šahinbegović - Software Specialist & Frontend Developer Berlin",
+        alt: "Ajdin Šahinbegović - Frontend & Full-Stack Developer Berlin",
       },
     ],
     locale: "en_DE",
@@ -71,13 +87,11 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title:
-      "Ajdin Šahinbegović | Software Specialist & Frontend Developer Berlin",
+    title: "Ajdin Šahinbegović | Frontend & Full-Stack Developer Berlin",
     description:
-      "Senior Frontend Engineer based in Berlin. Building digital ecosystems and scalable web architecture.",
+      "Senior Frontend & Full-Stack Developer based in Berlin. Specializing in high-performance React/Next.js, scalable frontend architecture, and Design Systems.",
     images: ["https://shekeyweb.com/og-image.png"],
   },
-
   robots: {
     index: true,
     follow: true,

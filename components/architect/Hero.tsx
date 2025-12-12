@@ -92,9 +92,9 @@ export const Hero = () => {
         {/* Left: Text */}
         <div className="text-center md:text-left">
           <h1 className="hero-fade text-5xl md:text-7xl font-bold tracking-tighter leading-[0.95] mb-8 text-[var(--text-main)] opacity-0 translate-y-4">
-            {portfolioData.personal.name} - {portfolioData.personal.title}
+            {portfolioData.personal.name} {portfolioData.personal.title}
             <span className="sr-only">
-              Berlin | {portfolioData.personal.subtitle}
+              Senior Frontend & Full-Stack Developer - Berlin
             </span>
           </h1>
           <p className="hero-fade text-lg md:text-xl text-[var(--text-muted)] leading-relaxed max-w-lg mx-auto md:mx-0 opacity-0 translate-y-4">

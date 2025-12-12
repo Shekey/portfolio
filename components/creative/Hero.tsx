@@ -44,8 +44,8 @@ export function Hero() {
           <div className="flex flex-col md:flex-row md:items-end justify-between pt-8">
             <div className="max-w-xl space-y-4">
               <p className="text-2xl text-gray-300 hero-description">
-                I build stuff with code. But I&apos;m also into 90s cars, BBQ
-                sessions, and swimming in lakes. Let me show you the real me.
+                Outside of my work as a Frontend & Full-Stack Developer in
+                Berlin, I&apos;m into 90s cars, BBQ sessions, and lake swimming.
               </p>
               <p className="text-lg text-gray-500 hero-subtext">
                 (Yes, there&apos;s still tech stuff here. But that&apos;s not

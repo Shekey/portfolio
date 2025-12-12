@@ -45,8 +45,6 @@ async function proxy(request: NextRequest) {
         host: "eu.i.posthog.com",
       },
       body: request.body,
-      // @ts-ignore: Required for passing request body in newer Next.js/Node
-      duplex: "half",
     });
 
     const response = new NextResponse(res.body, {
